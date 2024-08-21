@@ -1,0 +1,52 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --background-color: 'white';
+  --secondary-background-color: 'white';
+}
+
+div {
+  --secondary-background-color: 'white';
+  /* font-family: 'KaTeX_Main', serif; */
+  padding: 0 20px;
+}
+
+div > h2 {
+  color: blue;
+}
+
+.anchor {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: -webkit-fill-available;
+}
+
+.dot {
+  margin: 0 auto;
+  width: min-content;
+}
+
+#page-ctn {
+  max-width: 34em;
+}
+
+/* Change katex font to match surrounding text */
+.katex {
+  font-size: 1em !important;
+}
+
+/* Different syles for definitions */
+.def {
+  background-color: #f9f0e7 !important;
+  padding: 1px 0.5em 1px 1em;
+  border-left: 3px red solid;
+}
