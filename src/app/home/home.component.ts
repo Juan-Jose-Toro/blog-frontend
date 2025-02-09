@@ -9,17 +9,21 @@ import { Observable } from 'rxjs';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <ul class="">
-      @for(note of noteList; track note) {
-        <li>
-          <a [routerLink]="['/notes/',note]">
-            {{note}}
-          </a>
-        </li>
-      }
-    </ul>
+    <div class="markdown-body">
+      <ul class="">
+        @for(note of noteList; track note) {
+          <li>
+            <!-- Creates a link with the name of the note we just fetched -->
+            <!-- See app.routes.ts for routes  -->
+            <a [routerLink]="['/notes/',note]">
+              {{note}}
+            </a>
+          </li>
+        }
+      </ul>
+    </div>
   `,
-  styleUrl: './home.component.scss'
+  // styleUrl: './home.component.scss'
 })
 
 export class HomeComponent {
@@ -29,7 +33,7 @@ export class HomeComponent {
   constructor(private http: HttpClient) { }
 
   getPage(): Observable<any> {
-    return this.http.get<any>(this.apiUrl + 'notes/list/');
+    return this.http.get<any>(this.apiUrl + 'notes_list/');
   }
 
   ngOnInit() {

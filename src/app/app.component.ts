@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
       <router-outlet></router-outlet>
     </div>
   `,
-  styleUrl: './app.component.css'
+  // styleUrl: './app.component.css'
 })
 export class AppComponent {
 
