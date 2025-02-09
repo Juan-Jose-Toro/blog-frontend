@@ -14,11 +14,12 @@ import katex from '@vscode/markdown-it-katex';
   standalone: true,
   imports: [RouterModule],
   template: `
+    <a class="p-2 my-2 bg-yellow-300" [routerLink]="['/']">
+      home
+    </a>
     <div class="markdown-body">
-      <a class="p-2 my-2 bg-yellow-300" [routerLink]="['/']">
-        home
-      </a>
-      <div [innerHTML]="pageContent" class="max-w-screen-md mx-auto">
+      <!-- markdown-body disables any custom tailwindcss from this point on -->
+      <div [innerHTML]="pageContent">
       </div>
     </div>
   `,
@@ -60,6 +61,7 @@ export class NoteComponent {
       console.log("testing:", JSON.stringify(result))
       this.pageContent = this.md.render(result);
       // this.pageContent = this.md.render('# Math Rulez! \n  $\\sqrt{3x-1}$')
+      // the sanitizer prevented katex from rendering properly
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.pageContent)
       console.log('pageContent', this.pageContent)
     })

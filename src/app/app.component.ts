@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <div class="max-w-screen-md mx-auto">
+    <div class="max-w-screen-md mx-auto py-20">
       <router-outlet></router-outlet>
     </div>
   `,
