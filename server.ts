@@ -4,6 +4,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
+import * as https from 'http';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -24,6 +25,17 @@ export function app(): express.Express {
     maxAge: '1y',
     index: 'index.html',
   }));
+
+  // server.get('/img/**', (req, res) => {
+  //   let url = "https://cloudinary.com/glossary/image-url"
+  //   https.get(url, (imageResponse) => {
+  //     const contentType = imageResponse.headers['content-type'];
+  //     res.set('Content-Type', contentType);
+
+  //     // Stream the image data to the client
+  //     imageResponse.pipe(res);
+  //   })
+  // })
 
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {

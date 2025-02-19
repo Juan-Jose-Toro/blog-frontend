@@ -4,6 +4,13 @@
 @tailwind utilities;
 
 @layer base {
+
+  // TODO: It seems that tailwind doesn't like list styles, why?
+  ol,
+  ul {
+    list-style: initial;
+  }
+
   h1 {
     // @apply text-blue-400
   }

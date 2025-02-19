@@ -39,6 +39,21 @@ export class NoteComponent {
     // require() here would try to dynamically load the package which errors
     //   why?
     this.md = markdownit().use(katex);
+    // Change how the images are rendered so that the request goes to our local server
+    this.md.renderer.rules.image = function (tokens, idx, options, env, self) {
+      const token = tokens[idx];
+      console.log(token)
+      const src = token.attrGet('src');
+      const alt = token.content;
+
+      const modifiedSrc = "http://localhost:3000/" + src
+
+      return `
+        <a href="${modifiedSrc}" target="_blank" rel="noopener noreferrer">
+          <img class="m-auto max-h-[15rem]" src="${modifiedSrc}" alt="${alt}">
+        </a>
+      `;
+    }
   }
 
   getPage(): Observable<any> {
@@ -57,10 +72,9 @@ export class NoteComponent {
     this.getPage().subscribe(page => {
       console.log('page:', page)
       let result = JSON.parse(page).result
-      console.log("result to be rendered", result)
-      console.log("testing:", JSON.stringify(result))
+      // console.log("result to be rendered", result)
+      // console.log("testing:", JSON.stringify(result))
       this.pageContent = this.md.render(result);
-      // this.pageContent = this.md.render('# Math Rulez! \n  $\\sqrt{3x-1}$')
       // the sanitizer prevented katex from rendering properly
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.pageContent)
       console.log('pageContent', this.pageContent)
