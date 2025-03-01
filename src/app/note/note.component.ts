@@ -9,6 +9,8 @@ import markdownit from 'markdown-it';
 //   why the other version did not work
 import katex from '@vscode/markdown-it-katex';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-note',
   standalone: true,
@@ -29,9 +31,9 @@ import katex from '@vscode/markdown-it-katex';
 export class NoteComponent {
   private md;
   private apiUrl = 'http://localhost:3000/';
-  @Input() pageContent: any;
-  route: ActivatedRoute = inject(ActivatedRoute)
-
+  @Input() pageContent: any; // Internal content variable to keep everything updated
+  route: ActivatedRoute = inject(ActivatedRoute);
+  title = inject(Title);
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
     // TODO: For some reason the original guy that created this module does
@@ -41,6 +43,8 @@ export class NoteComponent {
     this.md = markdownit().use(katex);
     // Change how the images are rendered so that the request goes to our local server
     this.md.renderer.rules.image = function (tokens, idx, options, env, self) {
+      // Renders images to look at the local server
+
       const token = tokens[idx];
       console.log(token)
       const src = token.attrGet('src');
@@ -48,6 +52,7 @@ export class NoteComponent {
 
       const modifiedSrc = "http://localhost:3000/" + src
 
+      // Allows images to be clicked
       return `
         <a href="${modifiedSrc}" target="_blank" rel="noopener noreferrer">
           <img class="m-auto max-h-[15rem]" src="${modifiedSrc}" alt="${alt}">
@@ -79,6 +84,10 @@ export class NoteComponent {
       this.pageContent = this.sanitizer.bypassSecurityTrustHtml(this.pageContent)
       console.log('pageContent', this.pageContent)
     })
+
+    // Set title of the note
+    let noteName = this.route.snapshot.params['name'].split("/").slice(-1);
+    this.title.setTitle(noteName)
   }
 }
 
