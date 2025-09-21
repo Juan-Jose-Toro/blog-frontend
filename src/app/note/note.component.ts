@@ -11,6 +11,8 @@ import katex from '@vscode/markdown-it-katex';
 
 import { Title } from '@angular/platform-browser';
 
+import secrets from '../../../secrets.json';
+
 @Component({
   selector: 'app-note',
   standalone: true,
@@ -30,7 +32,7 @@ import { Title } from '@angular/platform-browser';
 
 export class NoteComponent {
   private md;
-  private apiUrl = 'http://10.9.83.128:3000/';
+  private apiUrl = 'http://' + secrets.apiUrl + '/';
   @Input() pageContent: any; // Internal content variable to keep everything updated
   route: ActivatedRoute = inject(ActivatedRoute);
   title = inject(Title);
@@ -50,7 +52,7 @@ export class NoteComponent {
       const src = token.attrGet('src');
       const alt = token.content;
 
-      const modifiedSrc = "http://10.9.83.128:3000/" + src
+      const modifiedSrc = 'http://' + secrets.apiUrl + '/' + src
 
       // Allows images to be clicked
       return `

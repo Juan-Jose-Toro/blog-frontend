@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import secrets from '../../../secrets.json';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ import { Observable } from 'rxjs';
 
 export class HomeComponent {
   @Input() noteList: any;
-  private apiUrl = 'http://10.9.83.128:3000/';
+  private apiUrl = 'http://' + secrets.apiUrl + '/';
 
   constructor(private http: HttpClient) { }
 

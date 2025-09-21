@@ -2,3 +2,5 @@
 /.angular
 secrets.json
 /dist
+
+.*.swp
