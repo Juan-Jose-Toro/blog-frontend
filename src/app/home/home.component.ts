@@ -28,7 +28,7 @@ import { Observable } from 'rxjs';
 
 export class HomeComponent {
   @Input() noteList: any;
-  private apiUrl = 'http://localhost:3000/';
+  private apiUrl = 'http://10.9.83.128:3000/';
 
   constructor(private http: HttpClient) { }
 

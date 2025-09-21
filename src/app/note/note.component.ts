@@ -30,7 +30,7 @@ import { Title } from '@angular/platform-browser';
 
 export class NoteComponent {
   private md;
-  private apiUrl = 'http://localhost:3000/';
+  private apiUrl = 'http://10.9.83.128:3000/';
   @Input() pageContent: any; // Internal content variable to keep everything updated
   route: ActivatedRoute = inject(ActivatedRoute);
   title = inject(Title);
@@ -50,7 +50,7 @@ export class NoteComponent {
       const src = token.attrGet('src');
       const alt = token.content;
 
-      const modifiedSrc = "http://localhost:3000/" + src
+      const modifiedSrc = "http://10.9.83.128:3000/" + src
 
       // Allows images to be clicked
       return `
