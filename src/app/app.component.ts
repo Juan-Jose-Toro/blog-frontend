@@ -6,11 +6,11 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <div class="max-w-screen-sm mx-auto py-20">
+    <div class="max-w-screen-md mx-auto py-20">
       <router-outlet></router-outlet>
     </div>
   `,
-  // styleUrl: './app.component.css'
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
 

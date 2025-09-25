@@ -18,4 +18,14 @@
   h2 {
     // @apply text-red-400
   }
+
+  .katex {
+    font-size: 1.2rem;
+  }
+
+  .markdown-body {
+    line-height: 1.6rem;
+    font-size: 1.2rem;
+    font-family: 'CMU Serif';
+  }
 }
