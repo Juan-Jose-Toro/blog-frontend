@@ -18,7 +18,7 @@ import secrets from '../../../secrets.json';
   standalone: true,
   imports: [RouterModule],
   template: `
-    <a class="p-2 my-2 bg-yellow-300" [routerLink]="['/']">
+    <a class="bg-yellow-300" [routerLink]="['/']">
       home
     </a>
     <div class="markdown-body">
